@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوابة التواصل المدرسي — توثيق المشروع</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1A1208;
+  --gold:#C8922A;
+  --gold-l:#F0D080;
+  --gold-ll:#FDF5DC;
+  --teal:#0F6E56;
+  --teal-l:#E1F5EE;
+  --cream:#FAF6ED;
+  --cream-d:#F0E8D0;
+  --paper:#FFFDF5;
+  --border:#D4B896;
+  --border-s:#E8D8B8;
+  --text:#2C1F0E;
+  --text2:#5A4428;
+  --text3:#8C7055;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(200,146,42,.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(15,110,86,.06) 0%, transparent 50%);
+}
+
+/* ── TEXTURE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── HEADER / COVER ── */
+.cover{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:4rem 2rem;
+  overflow:hidden;
+  background:var(--ink);
+}
+
+.cover::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(200,146,42,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(15,110,86,.12) 0%, transparent 60%);
+}
+
+/* زخارف هندسية */
+.cover-geo{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.cover-geo::before{
+  content:'';
+  position:absolute;
+  top:-80px; right:-80px;
+  width:360px; height:360px;
+  border:1px solid rgba(200,146,42,.2);
+  border-radius:50%;
+  animation:rotSlow 30s linear infinite;
+}
+
+.cover-geo::after{
+  content:'';
+  position:absolute;
+  bottom:-100px; left:-100px;
+  width:400px; height:400px;
+  border:1px solid rgba(200,146,42,.12);
+  border-radius:50%;
+  animation:rotSlow 40s linear infinite reverse;
+}
+
+@keyframes rotSlow{ to{transform:rotate(360deg)} }
+
+.cover-inner{position:relative;z-index:1;max-width:760px;animation:fadeDown .9s ease both}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+
+/* شعار المشروع */
+.project-emblem{
+  width:110px;
+  height:110px;
+  margin:0 auto 2rem;
+  position:relative;
+}
+
+.project-emblem svg{
+  width:100%;
+  height:100%;
+  filter:drop-shadow(0 0 20px rgba(200,146,42,.4));
+}
+
+.school-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(200,146,42,.15);
+  border:1px solid rgba(200,146,42,.3);
+  color:var(--gold-l);
+  padding:6px 18px;
+  border-radius:24px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.5px;
+  margin-bottom:1.6rem;
+  animation:fadeDown .9s .2s ease both;
+}
+
+.cover h1{
+  font-family:'Amiri',serif;
+  font-size:clamp(2.2rem,6vw,4rem);
+  font-weight:700;
+  color:#fff;
+  line-height:1.25;
+  margin-bottom:1rem;
+  animation:fadeDown .9s .3s ease both;
+}
+
+.cover h1 span{
+  color:var(--gold);
+  display:block;
+  font-size:.65em;
+}
+
+.cover-subtitle{
+  font-size:15px;
+  color:rgba(255,255,255,.6);
+  line-height:1.8;
+  max-width:520px;
+  margin:0 auto 2.5rem;
+  animation:fadeDown .9s .4s ease both;
+}
+
+.cover-meta{
+  display:flex;
+  gap:2rem;
+  justify-content:center;
+  flex-wrap:wrap;
+  animation:fadeDown .9s .5s ease both;
+}
+
+.cover-meta-item{
+  text-align:center;
+}
+
+.cover-meta-item strong{
+  display:block;
+  font-size:22px;
+  font-weight:800;
+  color:var(--gold);
+  line-height:1.2;
+}
+
+.cover-meta-item span{
+  font-size:11px;
+  color:rgba(255,255,255,.5);
+}
+
+.cover-divider{
+  width:80px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,146,42,.5),transparent);
+  margin:2.5rem auto;
+  animation:fadeDown .9s .6s ease both;
+}
+
+.cover-scroll{
+  position:absolute;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.3);
+  font-size:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  animation:bob 2s ease-in-out infinite;
+}
+
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+.scroll-line{
+  width:1px;
+  height:40px;
+  background:linear-gradient(to bottom, rgba(200,146,42,.5), transparent);
+}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:900px;margin:0 auto;padding:4rem 1.5rem;position:relative;z-index:1}
+
+/* ── ORNAMENT ── */
+.ornament{
+  text-align:center;
+  margin:3rem 0;
+  color:var(--gold);
+  font-size:18px;
+  opacity:.4;
+  letter-spacing:8px;
+}
+
+/* ── SECTION ── */
+.sec{
+  margin-bottom:4rem;
+  animation:fadeUp .6s ease both;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:10.5px;
+  font-weight:800;
+  color:var(--gold);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:.8rem;
+  padding-right:2px;
+}
+
+.sec-label::before{
+  content:'';
+  display:inline-block;
+  width:20px;
+  height:2px;
+  background:var(--gold);
+  border-radius:2px;
+}
+
+.sec h2{
+  font-family:'Amiri',serif;
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:1.8rem;
+  position:relative;
+  padding-bottom:1rem;
+}
+
+.sec h2::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:60px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold));
+}
+
+/* ── INFO CARD ── */
+.info-card{
+  background:var(--paper);
+  border:1px solid var(--border-s);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 32px rgba(44,31,14,.06);
+}
+
+.info-card-header{
+  background:var(--ink);
+  padding:1.2rem 1.6rem;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.info-card-header span{
+  font-size:22px;
+}
+
+.info-card-header h3{
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+}
+
+.info-card-body{
+  padding:1.6rem;
+}
+
+.info-row{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border-s);
+}
+
+.info-row:last-child{border-bottom:none}
+
+.info-ico{
+  width:36px;
+  height:36px;
+  background:var(--gold-ll);
+  border:1px solid var(--border);
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  flex-shrink:0;
+}
+
+.info-lbl{
+  font-size:11px;
+  color:var(--text3);
+  display:block;
+  margin-bottom:2px;
+  font-weight:600;
+}
+
+.info-val{
+  font-size:14px;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.5;
+}
+
+/* ── TEAM CARDS ── */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:16px;
+}
+
+.team-card{
+  background:var(--paper);
+  border:1px solid var(--border-s);
+  border-radius:14px;
+  padding:1.6rem 1.2rem;
+  text-align:center;
+  transition:transform .25s,box-shadow .25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.team-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+}
+
+.team-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 36px rgba(44,31,14,.1);
+}
+
+.team-avatar{
+  width:64px;
+  height:64px;
+  background:linear-gradient(135deg,var(--gold-ll),var(--cream-d));
+  border:2px solid var(--border);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  margin:0 auto 1rem;
+}
+
+.team-name{
+  font-size:14px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:4px;
+}
+
+.team-role{
+  font-size:11px;
+  color:var(--text3);
+  background:var(--cream-d);
+  padding:3px 10px;
+  border-radius:12px;
+  display:inline-block;
+}
+
+/* ── OVERVIEW CARD ── */
+.overview{
+  background:var(--ink);
+  border-radius:20px;
+  padding:2.4rem;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+
+.overview::before{
+  content:'';
+  position:absolute;
+  top:-60px; left:-60px;
+  width:240px; height:240px;
+  background:radial-gradient(circle, rgba(200,146,42,.15) 0%, transparent 70%);
+  border-radius:50%;
+}
+
+.overview::after{
+  content:'';
+  position:absolute;
+  bottom:-80px; right:-40px;
+  width:280px; height:280px;
+  background:radial-gradient(circle, rgba(15,110,86,.12) 0%, transparent 70%);
+  border-radius:50%;
+}
+
+.overview-content{position:relative;z-index:1}
+
+.overview-title{
+  font-family:'Amiri',serif;
+  font-size:20px;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:1rem;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.overview-text{
+  font-size:14px;
+  line-height:2;
+  color:rgba(255,255,255,.82);
+  margin-bottom:1.4rem;
+}
+
+.overview-text strong{
+  color:var(--gold-l);
+}
+
+.overview-stats{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+  padding-top:1.4rem;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+.ov-stat strong{
+  display:block;
+  font-size:26px;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.ov-stat span{
+  font-size:11px;
+  color:rgba(255,255,255,.5);
+}
+
+/* ── STEPS ── */
+.steps{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+
+.step{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:0 1.6rem;
+  position:relative;
+}
+
+.step:not(:last-child)::before{
+  content:'';
+  position:absolute;
+  top:50px;
+  right:29px;
+  width:2px;
+  height:calc(100% - 20px);
+  background:linear-gradient(to bottom,var(--gold),rgba(200,146,42,.1));
+}
+
+.step-num{
+  width:60px;
+  height:60px;
+  background:var(--ink);
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Amiri',serif;
+  font-size:20px;
+  font-weight:700;
+  color:var(--gold);
+  flex-shrink:0;
+  position:relative;
+  z-index:1;
+}
+
+.step-content{
+  background:var(--paper);
+  border:1px solid var(--border-s);
+  border-radius:12px;
+  padding:1.4rem;
+  margin-bottom:24px;
+  transition:box-shadow .2s;
+}
+
+.step-content:hover{
+  box-shadow:0 6px 24px rgba(44,31,14,.07);
+}
+
+.step-title{
+  font-size:15px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.step-ico{font-size:18px}
+
+.step-desc{
+  font-size:13.5px;
+  color:var(--text2);
+  line-height:1.8;
+}
+
+.step-tag{
+  display:inline-block;
+  font-size:11px;
+  font-weight:700;
+  color:var(--teal);
+  background:var(--teal-l);
+  padding:2px 10px;
+  border-radius:10px;
+  margin-top:8px;
+}
+
+/* ── FEATURES ── */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:16px;
+}
+
+.feat{
+  background:var(--paper);
+  border:1px solid var(--border-s);
+  border-radius:14px;
+  padding:1.4rem;
+  transition:transform .2s,box-shadow .2s;
+  position:relative;
+}
+
+.feat:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(44,31,14,.08);
+}
+
+.feat-ico{
+  font-size:28px;
+  margin-bottom:.8rem;
+  display:block;
+}
+
+.feat-title{
+  font-size:14px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:5px;
+}
+
+.feat-desc{
+  font-size:12.5px;
+  color:var(--text3);
+  line-height:1.7;
+}
+
+/* ── TECH STACK ── */
+.tech-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.tech-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--paper);
+  border:1px solid var(--border-s);
+  border-radius:10px;
+  padding:8px 16px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text2);
+  transition:all .2s;
+}
+
+.tech-badge:hover{
+  border-color:var(--gold);
+  color:var(--ink);
+  background:var(--gold-ll);
+}
+
+.tech-badge .dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+/* ── PHOTO DOCS ── */
+.photo-note{
+  background:var(--paper);
+  border:1px solid var(--border-s);
+  border-radius:14px;
+  padding:2.4rem;
+  text-align:center;
+}
+
+.photo-note-ico{
+  font-size:48px;
+  margin-bottom:1rem;
+}
+
+.photo-note h3{
+  font-size:16px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:.8rem;
+}
+
+.photo-note p{
+  font-size:13px;
+  color:var(--text3);
+  line-height:1.8;
+  max-width:480px;
+  margin:0 auto 1.4rem;
+}
+
+.photo-placeholder-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:1.4rem;
+}
+
+.pp{
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,var(--cream-d),var(--gold-ll));
+  border:2px dashed var(--border);
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  color:var(--text3);
+  gap:6px;
+}
+
+.pp span{
+  font-size:11px;
+  font-weight:600;
+}
+
+/* ── LINK SECTION ── */
+.link-box{
+  background:var(--ink);
+  border-radius:18px;
+  padding:2.4rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.link-box::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center, rgba(200,146,42,.1) 0%, transparent 70%);
+}
+
+.link-box-inner{position:relative;z-index:1}
+
+.link-ico{
+  font-size:40px;
+  margin-bottom:1rem;
+}
+
+.link-box h3{
+  font-family:'Amiri',serif;
+  font-size:20px;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:.8rem;
+}
+
+.link-box p{
+  font-size:13px;
+  color:rgba(255,255,255,.55);
+  margin-bottom:1.6rem;
+  line-height:1.8;
+}
+
+.link-url{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(200,146,42,.15);
+  border:1px solid rgba(200,146,42,.35);
+  color:var(--gold-l);
+  padding:10px 24px;
+  border-radius:24px;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  transition:all .2s;
+  word-break:break-all;
+}
+
+.link-url:hover{
+  background:rgba(200,146,42,.25);
+  color:#fff;
+}
+
+/* ── FOOTER ── */
+.doc-footer{
+  background:var(--ink);
+  padding:3rem 2rem;
+  text-align:center;
+  position:relative;
+  z-index:1;
+  margin-top:4rem;
+}
+
+.footer-logo{
+  font-family:'Amiri',serif;
+  font-size:24px;
+  font-weight:700;
+  color:var(--gold);
+  margin-bottom:.5rem;
+}
+
+.footer-sub{
+  font-size:13px;
+  color:rgba(255,255,255,.4);
+  line-height:1.8;
+}
+
+.footer-seal{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(200,146,42,.1);
+  border:1px solid rgba(200,146,42,.2);
+  color:var(--gold-l);
+  padding:6px 18px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:600;
+  margin-top:1.4rem;
+}
+
+/* ── DIVIDERS ── */
+.geo-divider{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:3.5rem 0;
+}
+
+.geo-divider::before,.geo-divider::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border));
+}
+
+.geo-divider::after{
+  background:linear-gradient(90deg,var(--border),transparent);
+}
+
+.geo-divider-ico{
+  width:32px;
+  height:32px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  transform:rotate(45deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  background:var(--paper);
+  flex-shrink:0;
+}
+
+/* ── PRINT ── */
+@media print{
+  .cover{min-height:auto;padding:3rem 2rem;page-break-after:always}
+  .cover-scroll{display:none}
+  .sec{page-break-inside:avoid}
+  body{background:white}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .cover{padding:3rem 1.2rem;min-height:auto}
+  .cover h1{font-size:2rem}
+  .photo-placeholder-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .main{padding:2rem 1rem}
+  .step{grid-template-columns:48px 1fr;gap:0 1rem}
+  .step-num{width:48px;height:48px;font-size:16px}
+  .step:not(:last-child)::before{right:23px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     الغلاف
+════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-geo"></div>
+  <div class="cover-inner">
+
+    <!-- الشعار -->
+    <div class="project-emblem">
+      <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- دائرة خارجية -->
+        <circle cx="55" cy="55" r="52" stroke="#C8922A" stroke-width="1.5" opacity=".5"/>
+        <!-- دائرة داخلية -->
+        <circle cx="55" cy="55" r="42" stroke="#C8922A" stroke-width="1" opacity=".3"/>
+        <!-- خلفية مركزية -->
+        <circle cx="55" cy="55" r="34" fill="rgba(200,146,42,0.12)"/>
+        <!-- رمز المدرسة - كتاب مفتوح -->
+        <path d="M35 45 C35 43 36.5 42 38 42 L54 42 L54 68 L38 68 C36.5 68 35 67 35 65 Z" fill="rgba(200,146,42,0.3)" stroke="#C8922A" stroke-width="1.5"/>
+        <path d="M75 45 C75 43 73.5 42 72 42 L56 42 L56 68 L72 68 C73.5 68 75 67 75 65 Z" fill="rgba(200,146,42,0.3)" stroke="#C8922A" stroke-width="1.5"/>
+        <line x1="54" y1="42" x2="56" y2="42" stroke="#C8922A" stroke-width="1.5"/>
+        <line x1="54" y1="68" x2="56" y2="68" stroke="#C8922A" stroke-width="1.5"/>
+        <!-- نقطة اتصال -->
+        <circle cx="55" cy="55" r="4" fill="#C8922A" opacity=".7"/>
+        <!-- زخارف نجمة -->
+        <path d="M55 20 L57 27 L64 27 L58 32 L61 39 L55 34 L49 39 L52 32 L46 27 L53 27 Z" fill="#C8922A" opacity=".4"/>
+      </svg>
+    </div>
+
+    <div class="school-tag">
+      🏫 مدرسة ذي قار للتعليم الأساسي (٥–٩) · تعليم شمال الباطنة · سلطنة عُمان
+    </div>
+
+    <h1>
+      بوابة التواصل المدرسي
+      <span>مشروع التخطيط والتصميم — الفصل الثاني 2025</span>
+    </h1>
+
+    <p class="cover-subtitle">
+      منصة رقمية تُعالج مشكلة ضعف التواصل بين المدرسة وأولياء الأمور
+      عبر بوابة إلكترونية متكاملة مرتبطة بقاعدة بيانات حية
+    </p>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>٦٠</strong><span>درجة التقييم</span></div>
+      <div class="cover-meta-item"><strong>٢</strong><span>صفحة رئيسية</span></div>
+      <div class="cover-meta-item"><strong>Google Sheets</strong><span>قاعدة البيانات</span></div>
+      <div class="cover-meta-item"><strong>2025</strong><span>العام الدراسي</span></div>
+    </div>
+
+    <div class="cover-divider"></div>
+
+  </div>
+
+  <div class="cover-scroll">
+    <span>اسحب للأسفل</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     المحتوى الرئيسي
+════════════════════════════════ -->
+<div class="main">
+
+  <!-- ① معلومات المشروع -->
+  <div class="sec">
+    <div class="sec-label">Project Info</div>
+    <h2>معلومات المشروع</h2>
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <span>📋</span>
+        <h3>البطاقة التعريفية للمشروع</h3>
+      </div>
+      <div class="info-card-body">
+        <div class="info-row">
+          <div class="info-ico">📌</div>
+          <div>
+            <span class="info-lbl">اسم المشروع</span>
+            <span class="info-val">بوابة التواصل المدرسي — مدرسة ذي قار للتعليم الأساسي</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🎯</div>
+          <div>
+            <span class="info-lbl">المشكلة التي يُعالجها</span>
+            <span class="info-val">ضعف التواصل بين المدرسة وأولياء الأمور وغياب منصة رقمية موحدة للتواصل</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">📚</div>
+          <div>
+            <span class="info-lbl">المادة الدراسية</span>
+            <span class="info-val">التخطيط والتصميم — الفصل الدراسي الثاني 2025</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🏫</div>
+          <div>
+            <span class="info-lbl">المدرسة</span>
+            <span class="info-val">مدرسة ذي قار للتعليم الأساسي (٥–٩) · مديرية تعليم شمال الباطنة · سلطنة عُمان</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">🎓</div>
+          <div>
+            <span class="info-lbl">درجة التقييم</span>
+            <span class="info-val" style="color:var(--gold);font-size:16px">٦٠ درجة</span>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-ico">📅</div>
+          <div>
+            <span class="info-lbl">تاريخ التسليم</span>
+            <span class="info-val">الفصل الدراسي الثاني — 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="geo-divider"><div class="geo-divider-ico">◆</div></div>
+
+  <!-- ② منفذة المشروع -->
+  <div class="sec">
+    <div class="sec-label">Student</div>
+    <h2>منفذة المشروع</h2>
+
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:500px">
+
+      <!-- بطاقة الطالبة -->
+      <div class="team-card" style="display:flex;align-items:center;gap:1.6rem;text-align:right;padding:1.8rem">
+        <div class="team-avatar" style="width:80px;height:80px;font-size:32px;flex-shrink:0">👩‍💻</div>
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:4px">منفذة المشروع</div>
+          <div class="team-name" style="font-size:18px;font-family:'Amiri',serif">عائشة خليل البلوشية</div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <div class="team-role">الصف الثامن</div>
+            <div class="team-role" style="background:var(--gold-ll);color:var(--gold)">شعبة 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- بطاقة المشرفة -->
+      <div style="background:var(--paper);border:1px solid var(--border-s);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:center;gap:12px">
+        <span style="font-size:24px">👩‍🏫</span>
+        <div>
+          <span style="font-size:11px;color:var(--text3);display:block;margin-bottom:2px;font-weight:600">المشرفة على المشروع</span>
+          <span style="font-size:14px;font-weight:700;color:var(--ink)">معلمة مادة المهارات</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="geo-divider"><div class="geo-divider-ico">◆</div></div>
+
+  <!-- ③ نبذة عن المشروع -->
+  <div class="sec">
+    <div class="sec-label">Project Overview</div>
+    <h2>نبذة عن المشروع</h2>
+
+    <div class="overview">
+      <div class="overview-content">
+        <div class="overview-title">💡 الفكرة والهدف</div>
+        <p class="overview-text">
+          لاحظت <strong>عائشة</strong> أن مدرسة ذي قار للتعليم الأساسي تعاني من مشكلة متكررة كل عام دراسي:
+          إنشاء <strong>مجموعات واتساب جديدة</strong> لكل صف وشعبة، مما يُشتّت إدارة المدرسة والأمهات
+          بين عشرات المجموعات ويجعل التواصل فوضوياً وغير منظّم.
+        </p>
+        <p class="overview-text">
+          جاء مشروع <strong>بوابة التواصل المدرسي</strong> حلاً رقمياً موحداً يستبدل مجموعات الواتساب المتشعبة
+          بمنصة إلكترونية واحدة، تُتيح لأولياء الأمور إرسال استفساراتهم مباشرة للإدارة،
+          كما تنشر الإدارة الإعلانات والفعاليات التي تظهر فوراً لجميع الزوار من أي جهاز.
+        </p>
+        <div class="overview-stats">
+          <div class="ov-stat"><strong>٢</strong><span>صفحة رئيسية</span></div>
+          <div class="ov-stat"><strong>٤</strong><span>أوراق بيانات في Sheets</span></div>
+          <div class="ov-stat"><strong>١٠٠%</strong><span>مجاني — بدون خادم</span></div>
+          <div class="ov-stat"><strong>فوري</strong><span>تحديث البيانات</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="geo-divider"><div class="geo-divider-ico">◆</div></div>
+
+  <!-- ④ خطوات التنفيذ -->
+  <div class="sec">
+    <div class="sec-label">Implementation Steps</div>
+    <h2>خطوات التنفيذ</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">١</div>
+        <div class="step-content">
+          <div class="step-title"><span class="step-ico">🔍</span> تحديد المشكلة</div>
+          <p class="step-desc">رصدت عائشة مشكلة تتكرر كل عام دراسي: إنشاء مجموعات واتساب جديدة لكل صف وشعبة، مما يُشتّت إدارة المدرسة والأمهات بين عشرات المجموعات ويُصعّب التواصل المنظّم ومتابعة الإعلانات المدرسية.</p>
+          <span class="step-tag">📊 تحليل المشكلة</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">٢</div>
+        <div class="step-content">
+          <div class="step-title"><span class="step-ico">✏️</span> التخطيط والتصميم الأولي</div>
+          <p class="step-desc">رسم النماذج الأولية (Wireframes) للصفحتين الرئيسيتين: بوابة أولياء الأمور ولوحة تحكم المعلم، وتحديد الوظائف المطلوبة لكل قسم.</p>
+          <span class="step-tag">🎨 تصميم UX/UI</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">٣</div>
+        <div class="step-content">
+          <div class="step-title"><span class="step-ico">⚙️</span> إعداد قاعدة البيانات</div>
+          <p class="step-desc">إنشاء Google Sheets بأربع أوراق عمل (الرسائل، الإعلانات، الفعاليات، الإحصائيات) وربطها بـ Google Apps Script لاستقبال البيانات ومعالجتها.</p>
+          <span class="step-tag">🗄️ قاعدة البيانات</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">٤</div>
+        <div class="step-content">
+          <div class="step-title"><span class="step-ico">💻</span> بناء الصفحات</div>
+          <p class="step-desc">تطوير صفحة أولياء الأمور (نموذج التواصل، الإعلانات، الفعاليات) ولوحة تحكم المعلم (إدارة الرسائل، نشر الإعلانات، عرض الإحصائيات) باستخدام HTML وCSS وJavaScript.</p>
+          <span class="step-tag">🌐 تطوير الويب</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">٥</div>
+        <div class="step-content">
+          <div class="step-title"><span class="step-ico">🔗</span> الربط والاختبار</div>
+          <p class="step-desc">ربط الصفحتين بـ Google Apps Script، واختبار جميع الوظائف (إرسال الرسائل، نشر الإعلانات، تحديث الحالات) والتأكد من ظهور البيانات فوراً لجميع الزوار.</p>
+          <span class="step-tag">🧪 الاختبار والتحقق</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">٦</div>
+        <div class="step-content">
+          <div class="step-title"><span class="step-ico">🚀</span> النشر والتوثيق</div>
+          <p class="step-desc">نشر البوابة على GitHub Pages لتكون متاحة للجميع مجاناً بدون خادم، وإعداد توثيق شامل للمشروع يشمل دليل الاستخدام وهوية المشروع البصرية.</p>
+          <span class="step-tag">📤 النشر والتوثيق</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="geo-divider"><div class="geo-divider-ico">◆</div></div>
+
+  <!-- ⑤ مميزات المشروع -->
+  <div class="sec">
+    <div class="sec-label">Key Features</div>
+    <h2>مميزات المشروع</h2>
+
+    <div class="features">
+      <div class="feat">
+        <span class="feat-ico">📨</span>
+        <div class="feat-title">نموذج تواصل احترافي</div>
+        <p class="feat-desc">يتيح لأولياء الأمور إرسال استفساراتهم مع تحديد نوع الرسالة والأولوية وتقييم التجربة</p>
+      </div>
+      <div class="feat">
+        <span class="feat-ico">📢</span>
+        <div class="feat-title">إعلانات حية</div>
+        <p class="feat-desc">تُنشر الإعلانات من لوحة التحكم وتظهر فوراً لجميع الزوار من أي جهاز أو متصفح</p>
+      </div>
+      <div class="feat">
+        <span class="feat-ico">🔐</span>
+        <div class="feat-title">لوحة تحكم محمية</div>
+        <p class="feat-desc">لوحة تحكم خاصة بالمعلم محمية برقم سري مع جلسة آمنة مدتها 30 دقيقة</p>
+      </div>
+      <div class="feat">
+        <span class="feat-ico">📊</span>
+        <div class="feat-title">إحصائيات تلقائية</div>
+        <p class="feat-desc">تتحدث إحصائيات الرسائل تلقائياً في Google Sheets عند كل عملية</p>
+      </div>
+      <div class="feat">
+        <span class="feat-ico">📱</span>
+        <div class="feat-title">متوافق مع الجوال</div>
+        <p class="feat-desc">تصميم متجاوب يعمل على جميع أحجام الشاشات والأجهزة</p>
+      </div>
+      <div class="feat">
+        <span class="feat-ico">💸</span>
+        <div class="feat-title">مجاني بالكامل</div>
+        <p class="feat-desc">يعمل بدون خادم أو اشتراك مدفوع باستخدام Google Sheets وGitHub Pages</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="geo-divider"><div class="geo-divider-ico">◆</div></div>
+
+  <!-- ⑥ التقنيات المستخدمة -->
+  <div class="sec">
+    <div class="sec-label">Technology Stack</div>
+    <h2>التقنيات المستخدمة</h2>
+
+    <div class="tech-grid">
+      <div class="tech-badge"><span class="dot" style="background:#E34C26"></span>HTML5</div>
+      <div class="tech-badge"><span class="dot" style="background:#264DE4"></span>CSS3</div>
+      <div class="tech-badge"><span class="dot" style="background:#F0DB4F"></span>JavaScript</div>
+      <div class="tech-badge"><span class="dot" style="background:#34A853"></span>Google Apps Script</div>
+      <div class="tech-badge"><span class="dot" style="background:#0F9D58"></span>Google Sheets</div>
+      <div class="tech-badge"><span class="dot" style="background:#181717"></span>GitHub Pages</div>
+      <div class="tech-badge"><span class="dot" style="background:#0F6E56"></span>Google Fonts — Cairo</div>
+      <div class="tech-badge"><span class="dot" style="background:#FF6B35"></span>REST API عبر doGet/doPost</div>
+    </div>
+  </div>
+
+  <div class="geo-divider"><div class="geo-divider-ico">◆</div></div>
+
+  <!-- ⑦ رابط المنصة (كان ⑧) -->
+  <div class="sec">
+    <div class="sec-label">Live Platform</div>
+    <h2>رابط المنصة المنشورة</h2>
+
+    <div class="link-box">
+      <div class="link-box-inner">
+        <div class="link-ico">🌐</div>
+        <h3>بوابة التواصل المدرسي — مباشرة</h3>
+        <p>
+          المنصة منشورة على GitHub Pages وتعمل بالكامل مع قاعدة بيانات Google Sheets الحية.<br>
+          يمكن لأي زائر فتحها من أي جهاز أو متصفح في أي مكان.
+        </p>
+        <a href="https://omk811.github.io/the-qar/" target="_blank" rel="noopener" class="link-url">
+          🔗 omk811.github.io/the-qar/
+        </a>
+
+        <div style="margin-top:1.4rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.8rem 1.4rem;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">📋</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5)">بوابة أولياء الأمور</div>
+            <div style="font-size:12px;color:var(--gold-l);font-weight:600">index.html</div>
+          </div>
+          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.8rem 1.4rem;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">⚙️</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5)">لوحة تحكم المعلم</div>
+            <div style="font-size:12px;color:var(--gold-l);font-weight:600">dashboard.html</div>
+          </div>
+          <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.8rem 1.4rem;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">🗄️</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.5)">قاعدة البيانات</div>
+            <div style="font-size:12px;color:var(--gold-l);font-weight:600">Google Sheets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════
+     الفوتر
+════════════════════════════════ -->
+<div class="doc-footer">
+  <div class="footer-logo">بوابة التواصل المدرسي</div>
+  <div class="footer-sub">
+    مدرسة ذي قار للتعليم الأساسي (٥–٩)<br>
+    مديرية تعليم شمال الباطنة · سلطنة عُمان<br>
+    الفصل الدراسي الثاني 2025
+  </div>
+  <div class="footer-seal">🏅 مشروع التخطيط والتصميم — عائشة خليل البلوشية — الثامن 3</div>
+</div>
+
+<script>
+// تأثير ظهور عند التمرير
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.style.animationPlayState='running';
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.sec,.step-content').forEach(function(el){
+  el.style.animationPlayState='paused';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
